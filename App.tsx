@@ -1,11 +1,29 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import WebView from 'react-native-webview';
+import {Platform, SafeAreaView, StyleSheet} from 'react-native';
+import WebView, {WebViewMessageEvent} from 'react-native-webview';
 
 function App(): React.JSX.Element {
+  const onMessageFromWebView = ({nativeEvent}: WebViewMessageEvent) => {
+    const {type, data} = JSON.parse(nativeEvent.data);
+    console.log(type, data);
+
+    if (type === 'downloadImage') {
+      downloadImage();
+    } else if (type === 'shareInsta') {
+      shareInsta();
+    }
+  };
+
+  function downloadImage() {}
+  function shareInsta() {}
+
   return (
     <SafeAreaView style={styles.container}>
-      <WebView source={{uri: 'http://169.254.34.122:5173/'}} />
+      <WebView
+        source={{uri: 'http://169.254.253.131:5173/'}}
+        onMessage={onMessageFromWebView}
+        userAgent={`sodong_${Platform.OS}`}
+      />
     </SafeAreaView>
   );
 }
