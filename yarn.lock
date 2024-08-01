@@ -7974,6 +7974,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-splash-screen@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-splash-screen@npm:3.3.0"
+  peerDependencies:
+    react-native: ">=0.57.0"
+  checksum: 14c565d5d4214f55586dcf6f7abd12d99d3e0667f67de3bda7aa24988971567b283a4187fbc0c6269c83b3c21d59d1950335c61bb0780ec2d065e20b3b9199d0
+  languageName: node
+  linkType: hard
+
 "react-native-webview@npm:^13.10.5":
   version: 13.10.5
   resolution: "react-native-webview@npm:13.10.5"
@@ -8696,6 +8705,7 @@ __metadata:
     react: 18.2.0
     react-native: ^0.74.4
     react-native-share: ^10.2.1
+    react-native-splash-screen: ^3.3.0
     react-native-webview: ^13.10.5
     react-test-renderer: 18.2.0
     typescript: 5.0.4
