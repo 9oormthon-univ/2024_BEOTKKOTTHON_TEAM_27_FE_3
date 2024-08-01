@@ -1,11 +1,19 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import CameraRoll from '@react-native-community/cameraroll';
-import React from 'react';
-import {Alert, Platform, SafeAreaView, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 import Share from 'react-native-share';
 
 function App(): React.JSX.Element {
+  const [isLoading, setIsLoading] = useState(false);
   const webviewRef = React.useRef<WebView>(null);
 
   const onMessageFromWebView = ({nativeEvent}: WebViewMessageEvent) => {
@@ -13,6 +21,7 @@ function App(): React.JSX.Element {
     console.log(type, data);
 
     if (type === 'saveAll') {
+      setIsLoading(true);
       copyText(data.text);
       downloadImage(data.url);
     } else if (type === 'shareInsta') {
@@ -42,6 +51,9 @@ function App(): React.JSX.Element {
           }),
         );
         Alert.alert('이미지 저장에 실패하였습니다. ');
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -72,6 +84,11 @@ function App(): React.JSX.Element {
         onMessage={onMessageFromWebView}
         userAgent={`sodong_${Platform.OS}`}
       />
+      {isLoading && (
+        <View style={styles.loading}>
+          <ActivityIndicator size="large" color={'#fff'} />
+        </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -84,5 +101,15 @@ const styles = StyleSheet.create({
   },
   webview: {
     flex: 1,
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(52, 52, 52, 0.5)',
   },
 });
