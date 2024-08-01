@@ -1,6 +1,6 @@
 import CameraRoll from '@react-native-community/cameraroll';
 import React from 'react';
-import {Platform, SafeAreaView, StyleSheet} from 'react-native';
+import {Alert, Platform, SafeAreaView, StyleSheet} from 'react-native';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 
 function App(): React.JSX.Element {
@@ -9,20 +9,25 @@ function App(): React.JSX.Element {
     console.log(type, data);
 
     if (type === 'downloadImage') {
-      downloadImage();
+      downloadImage(data.url);
     } else if (type === 'shareInsta') {
       shareInsta();
     }
   };
 
-  function downloadImage() {
-    CameraRoll.save(
-      'http://169.254.253.131:5173/src/assets/Image/sodong_smile.png',
-      {type: 'photo'},
-    )
-      .then(value => console.log(value))
-      .catch(e => console.error(e));
+  function downloadImage(url: string) {
+    console.log('>>> url', url);
+    CameraRoll.save(url, {type: 'photo'})
+      .then(value => {
+        console.log(value);
+        Alert.alert('이미지 저장에 성공하였습니다. ');
+      })
+      .catch(e => {
+        console.error(e);
+        Alert.alert('이미지 저장에 실패하였습니다. ');
+      });
   }
+
   function shareInsta() {}
 
   return (
