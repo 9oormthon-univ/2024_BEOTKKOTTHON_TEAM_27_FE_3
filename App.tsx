@@ -1,4 +1,4 @@
-import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import CameraRoll from '@react-native-community/cameraroll';
 import React from 'react';
 import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';

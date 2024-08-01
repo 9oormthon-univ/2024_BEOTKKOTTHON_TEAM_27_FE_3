@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-camera-roll/camera-roll": "^7.8.3",
+    "@react-native-community/cameraroll": "1.4.0",
+    "@types/react-native": "^0.73.0",
+    "fbjs": "^3.0.5",
     "react": "18.2.0",
-    "react-native": "0.74.4",
+    "react-native": "^0.74.4",
     "react-native-webview": "^13.10.5"
   },
   "devDependencies": {
