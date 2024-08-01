@@ -1,3 +1,4 @@
+import Clipboard from '@react-native-clipboard/clipboard';
 import CameraRoll from '@react-native-community/cameraroll';
 import React from 'react';
 import {Alert, Platform, SafeAreaView, StyleSheet} from 'react-native';
@@ -8,7 +9,8 @@ function App(): React.JSX.Element {
     const {type, data} = JSON.parse(nativeEvent.data);
     console.log(type, data);
 
-    if (type === 'downloadImage') {
+    if (type === 'saveAll') {
+      copyText(data.text);
       downloadImage(data.url);
     } else if (type === 'shareInsta') {
       shareInsta();
@@ -26,6 +28,11 @@ function App(): React.JSX.Element {
         console.error(e);
         Alert.alert('이미지 저장에 실패하였습니다. ');
       });
+  }
+
+  function copyText(text: string) {
+    Clipboard.setString(text);
+    Alert.alert('클립보드에 복사되었습니다.');
   }
 
   function shareInsta() {}
