@@ -1,3 +1,4 @@
+import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import React from 'react';
 import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
@@ -14,7 +15,14 @@ function App(): React.JSX.Element {
     }
   };
 
-  function downloadImage() {}
+  function downloadImage() {
+    CameraRoll.save(
+      'http://169.254.253.131:5173/src/assets/Image/sodong_smile.png',
+      {type: 'photo'},
+    )
+      .then(value => console.log(value))
+      .catch(e => console.error(e));
+  }
   function shareInsta() {}
 
   return (
