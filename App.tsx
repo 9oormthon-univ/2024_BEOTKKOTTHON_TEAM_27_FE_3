@@ -1,6 +1,6 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import CameraRoll from '@react-native-community/cameraroll';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -11,17 +11,10 @@ import {
 } from 'react-native';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 import Share from 'react-native-share';
-import SplashScreen from 'react-native-splash-screen';
 
 function App(): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const webviewRef = React.useRef<WebView>(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
-  }, []);
 
   const onMessageFromWebView = ({nativeEvent}: WebViewMessageEvent) => {
     const {type, data} = JSON.parse(nativeEvent.data);
