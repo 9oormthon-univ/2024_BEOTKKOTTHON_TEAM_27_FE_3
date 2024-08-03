@@ -80,7 +80,7 @@ function App(): React.JSX.Element {
     <SafeAreaView style={styles.container}>
       <WebView
         ref={webviewRef}
-        source={{uri: 'http://169.254.253.131:5173/'}}
+        source={{uri: 'https://sodong.pages.dev'}}
         onMessage={onMessageFromWebView}
         userAgent={`sodong_${Platform.OS}`}
       />
